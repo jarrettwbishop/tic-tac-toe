@@ -4,13 +4,17 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Website Title</title>
+		<title>Tic Tac Toe</title>
 		<link rel="stylesheet" href="main.css" />
 		<!-- Import Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Indie+Flower&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lilita+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Shadows+Into+Light&display=swap"
 			rel="stylesheet"
 		/>
 		<!-- Import FontAwesome Icons -->
@@ -23,14 +27,37 @@
 		/>
 	</head>
 	<body>
-		<header>Header</header>
-		<main>Main</main>
+		<header>
+			<div class="title">
+				<span class="tic">Tic</span>
+				<span class="tac">Tac </span>
+				<span class="toe">Toe</span>
+			</div>
+		</header>
+		<main>
+			<div class="board-edge"></div>
+			<div class="board">
+				<div class="board-tile top-left">
+					<p class="player-x">x</p>
+				</div>
+				<div class="board-tile top-middle">
+					<p class="player-o">o</p>
+				</div>
+				<div class="board-tile top-right"></div>
+				<div class="board-tile middle-left"></div>
+				<div class="board-tile middle-middle"></div>
+				<div class="board-tile middle-right"></div>
+				<div class="board-tile bottom-left"></div>
+				<div class="board-tile bottom-middle"></div>
+				<div class="board-tile bottom-right"></div>
+			</div>
+		</main>
 		<footer>
 			<p>
 				Created by
 				<a href="https://github.com/jarrettwbishop"
-					>Jarrett Bishop <i class="fa-github fa-brands"></i
-				></a>
+					>Jarrett Bishop <i class="fa-github fa-brands"></i>
+				</a>
 			</p>
 		</footer>
 
