@@ -91,12 +91,12 @@ main {
 	display: flex;
 	justify-content: center;
 }
-.board-edge {
+/* .board-edge {
 	height: 600px;
 	width: 600px;
-	border: 15px solid var(--background);
+	border: 15px solid green;
 	position: absolute;
-}
+} */
 
 .board {
 	display: grid;
@@ -115,6 +115,11 @@ main {
 	font-family: var(--font-header);
 	font-size: 8rem;
 	font-weight: 800;
+}
+
+.board-tile:hover {
+	background-color: green;
+	color: white;
 }
 
 .player-x {

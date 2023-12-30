@@ -33,8 +33,12 @@ function GameBoard() {
 }
 
 function GameController() {
+	let gameWon = false;
+
 	let playerOneName = "Player One";
 	let playerTwoName = "Player Two";
+
+	const boardController = GameBoard();
 
 	const players = [
 		{
@@ -52,30 +56,84 @@ function GameController() {
 
 	const changePlayer = () => {
 		activePlayer = activePlayer === players[0] ? players[1] : players[0];
-	};
-
-	const board = GameBoard();
-
-	const updateBoard = () => {
-		board.printBoard();
 		console.log(`${activePlayer.name}'s turn.`);
 	};
 
-	const playTurn = (row, column) => {
-		let validMove = board.placeMarker(row, column, activePlayer);
-		if (!validMove) {
-			console.log("Invalid Move");
-			updateBoard();
-			return;
-		}
+	const updateDisplay = () => {
+		let board = boardController.getBoard();
+		for (let i = 0; i < 3; i++) {
+			for (let j = 0; j < 3; j++) {
+				let tile = document.querySelector("." + "tile-" + i + j);
 
-		changePlayer();
-		updateBoard();
+				tile.textContent = board[i][j];
+				console.log(board[i][j]);
+			}
+		}
+		console.log("display updated");
 	};
+
+	const updateBoard = () => {
+		boardController.printBoard();
+		updateDisplay();
+	};
+
+	const checkForWin = () => {
+		let gameState = boardController.getBoard();
+		// Check for Matching Rows
+		gameState.forEach((row) => {
+			if (row[0] === row[1] && row[0] === row[2] && row[0] !== "- ") {
+				console.log(`${activePlayer.name} won!`);
+				gameWon = true;
+				return;
+			}
+		});
+
+		// Check for Matching Columns
+		for (let i = 0; i < 3; i++) {
+			if (
+				gameState[0][i] === gameState[1][i] &&
+				gameState[0][i] === gameState[2][i] &&
+				gameState[0][i] !== "- "
+			) {
+				console.log(`${activePlayer.name} won!`);
+				gameWon = true;
+				return;
+			}
+		}
+	};
+
+	const playTurn = (row, column) => {
+		if (!gameWon) {
+			let validMove = boardController.placeMarker(
+				row,
+				column,
+				activePlayer
+			);
+			if (!validMove) {
+				console.log("Invalid Move");
+				updateBoard();
+				return;
+			}
+			updateBoard();
+			checkForWin();
+		}
+		if (!gameWon) {
+			changePlayer();
+		}
+	};
+
+	// const autoWin = () => {
+	// 	for (let i = 0; i < 3; i++) {
+	// 		for (let j = 0; j < 3; j++) {
+	// 			playTurn(i, j);
+	// 			playTurn(i + 1, j);
+	// 		}
+	// 	}
+	// };
 
 	updateBoard();
 
-	return { playTurn };
+	return { playTurn, checkForWin };
 }
 
-let game = GameController();
+const game = GameController();
