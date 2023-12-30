@@ -63,13 +63,11 @@ function GameController() {
 		let board = boardController.getBoard();
 		for (let i = 0; i < 3; i++) {
 			for (let j = 0; j < 3; j++) {
-				let tile = document.querySelector("." + "tile-" + i + j);
+				let tile = document.querySelector("#" + "tile-" + i + j);
 
 				tile.textContent = board[i][j];
-				console.log(board[i][j]);
 			}
 		}
-		console.log("display updated");
 	};
 
 	const updateBoard = () => {
@@ -122,16 +120,17 @@ function GameController() {
 		}
 	};
 
-	// const autoWin = () => {
-	// 	for (let i = 0; i < 3; i++) {
-	// 		for (let j = 0; j < 3; j++) {
-	// 			playTurn(i, j);
-	// 			playTurn(i + 1, j);
-	// 		}
-	// 	}
-	// };
-
 	updateBoard();
+	let boardTiles = document.querySelectorAll(".board-tile");
+	console.log(boardTiles);
+
+	boardTiles.forEach((tile) => {
+		tile.addEventListener("click", () => {
+			let row = tile.id.slice(-2, -1);
+			let col = tile.id.slice(-1);
+			playTurn(row, col);
+		});
+	});
 
 	return { playTurn, checkForWin };
 }
