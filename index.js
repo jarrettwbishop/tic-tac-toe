@@ -118,12 +118,15 @@ function GameController() {
 		if (!gameWon) {
 			changePlayer();
 		}
+		if (gameWon) {
+			let winContainer = document.querySelector(".game-won-container");
+			winContainer.style.display = "flex";
+		}
 	};
 
 	updateBoard();
-	let boardTiles = document.querySelectorAll(".board-tile");
-	console.log(boardTiles);
 
+	let boardTiles = document.querySelectorAll(".board-tile");
 	boardTiles.forEach((tile) => {
 		tile.addEventListener("click", () => {
 			let row = tile.id.slice(-2, -1);

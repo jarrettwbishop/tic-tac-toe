@@ -91,6 +91,53 @@ main {
 	display: flex;
 	justify-content: center;
 }
+
+.game-won-container {
+	position: absolute;
+	align-self: center;
+	background-color: rgba(41, 41, 41, 0.98);
+	min-height: 650px;
+	min-width: 800px;
+	border-radius: 4rem;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	box-shadow: rgba(0, 0, 0, 0.295) 0px 0px 20px 3px;
+}
+
+h1 {
+	color: var(--board);
+	font-size: 3.5rem;
+	margin-bottom: 5rem;
+	text-decoration: underline;
+	font-weight: 900;
+	font-family: var(--font-header);
+}
+
+span {
+	color: var(--player-x);
+	text-transform: uppercase;
+	font-weight: 900;
+	font-size: 5rem;
+	margin-bottom: 6rem;
+	font-family: "Lilita One", sans-serif;
+}
+
+button {
+	border: 3px var(--board) solid;
+	color: var(--board);
+	font-weight: 800;
+	padding: 1rem 2rem;
+	font-size: 2rem;
+	margin-top: 5rem;
+}
+
+button:hover {
+	background-color: var(--board);
+	color: var(--neutral-100);
+}
+
 /* .board-edge {
 	height: 600px;
 	width: 600px;
