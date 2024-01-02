@@ -1,10 +1,9 @@
 function GameBoard() {
 	let board = [];
-
 	for (let i = 0; i < 3; i++) {
 		board[i] = [];
 		for (let j = 0; j < 3; j++) {
-			board[i].push("- ");
+			board[i][j] = "- ";
 		}
 	}
 
@@ -29,7 +28,17 @@ function GameBoard() {
 		console.log(display);
 	};
 
-	return { printBoard, placeMarker, getBoard };
+	const resetBoard = () => {
+		board = [];
+		for (let i = 0; i < 3; i++) {
+			board[i] = [];
+			for (let j = 0; j < 3; j++) {
+				board[i][j] = "- ";
+			}
+		}
+	};
+
+	return { printBoard, placeMarker, getBoard, resetBoard };
 }
 
 function GameController() {
@@ -71,6 +80,7 @@ function GameController() {
 	};
 
 	const updateBoard = () => {
+		console.log("Updated Board: ");
 		boardController.printBoard();
 		updateDisplay();
 	};
@@ -102,6 +112,7 @@ function GameController() {
 
 	const playTurn = (row, column) => {
 		if (!gameWon) {
+			console.log("check 1");
 			let validMove = boardController.placeMarker(
 				row,
 				column,
@@ -116,9 +127,12 @@ function GameController() {
 			checkForWin();
 		}
 		if (!gameWon) {
+			console.log("check 2");
 			changePlayer();
 		}
 		if (gameWon) {
+			console.log("Winning Board:");
+			boardController.printBoard();
 			let winContainer = document.querySelector(".game-won-container");
 			winContainer.style.display = "flex";
 		}
@@ -135,7 +149,18 @@ function GameController() {
 		});
 	});
 
-	return { playTurn, checkForWin };
+	const resetGame = () => {
+		activePlayer = players[0];
+		gameWon = false;
+		boardController.resetBoard();
+		console.log("reset board:");
+		updateBoard();
+		let winContainer = document.querySelector(".game-won-container");
+		winContainer.style.display = "none";
+		console.log(gameWon);
+	};
+
+	return { playTurn, checkForWin, resetGame, updateBoard };
 }
 
 const game = GameController();
