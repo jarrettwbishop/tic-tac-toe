@@ -110,7 +110,8 @@ h1 {
 	color: var(--board);
 	font-size: 3.5rem;
 	margin-bottom: 5rem;
-	text-decoration: underline;
+	text-decoration: dotted underline 6px;
+	text-underline-offset: 10px;
 	font-weight: 900;
 	font-family: var(--font-header);
 }
